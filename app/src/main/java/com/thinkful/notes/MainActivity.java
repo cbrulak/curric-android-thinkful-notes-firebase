@@ -7,22 +7,45 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
+    private RecyclerView mRecyclerView;
+    private EditText mEditText;
+    private Button mButton;
+    private NoteListItemAdapater mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(new NoteListItemAdapater(this, recyclerView));
-    }
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mEditText = (EditText) findViewById(R.id.edit_text);
+        mButton = (Button) findViewById(R.id.button);
 
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        mAdapter = new NoteListItemAdapater(this, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String note = mEditText.getText().toString();
+                final NoteListItem item = new NoteListItem(note);
+                mAdapter.addItem(item);
+                mEditText.setText("");
+                mLayoutManager.scrollToPosition(0);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

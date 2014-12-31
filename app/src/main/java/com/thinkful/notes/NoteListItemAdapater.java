@@ -12,14 +12,6 @@ import java.util.List;
 
 public class NoteListItemAdapater extends RecyclerView.Adapter<NoteListItemAdapater.ViewHolder> {
 
-    public class NoteListItem {
-        public String text;
-
-        public NoteListItem(String text) {
-            this.text = text;
-        }
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView text;
 
@@ -33,7 +25,8 @@ public class NoteListItemAdapater extends RecyclerView.Adapter<NoteListItemAdapa
     private RecyclerView mRecyclerView;
     private List<NoteListItem> mNoteListItems = new ArrayList<NoteListItem>() {
         {
-            add(new NoteListItem("This is a sample note."));
+            add(new NoteListItem("This is your first note. Try typing into the EditText above to " +
+                    "add another note. Tap on any note to remove it from the screen."));
         }
     };
 
