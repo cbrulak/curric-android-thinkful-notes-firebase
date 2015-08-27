@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteListItemAdapater extends RecyclerView.Adapter<NoteListItemAdapater.ViewHolder> {
+public class NoteListItemAdapter extends RecyclerView.Adapter<NoteListItemAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView text;
@@ -30,13 +30,13 @@ public class NoteListItemAdapater extends RecyclerView.Adapter<NoteListItemAdapa
         }
     };
 
-    public NoteListItemAdapater(Context context, RecyclerView recyclerView) {
+    public NoteListItemAdapter(Context context, RecyclerView recyclerView) {
         this.mContext = context;
         this.mRecyclerView = recyclerView;
     }
 
     @Override
-    public NoteListItemAdapater.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public NoteListItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.note_list_item, viewGroup, false);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +48,7 @@ public class NoteListItemAdapater extends RecyclerView.Adapter<NoteListItemAdapa
     }
 
     @Override
-    public void onBindViewHolder(NoteListItemAdapater.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(NoteListItemAdapter.ViewHolder viewHolder, int i) {
         NoteListItem noteListItem = mNoteListItems.get(i);
         viewHolder.text.setText(noteListItem.text);
     }

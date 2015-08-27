@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
     private EditText mEditText;
     private Button mButton;
-    private NoteListItemAdapater mAdapter;
+    private NoteListItemAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mAdapter = new NoteListItemAdapater(this, mRecyclerView);
+        mAdapter = new NoteListItemAdapter(this, mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
 
         mButton.setOnClickListener(new View.OnClickListener() {
