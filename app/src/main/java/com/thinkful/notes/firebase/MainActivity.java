@@ -11,7 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 
 public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
@@ -56,6 +60,50 @@ public class MainActivity extends Activity {
                 noteRef.setValue(item);
             }
         });
+
+        Button refresh = (Button) findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Query queryRef = myFirebaseRef.orderByKey();
+                queryRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot snapshot, String previousChild) {
+
+                        NoteListItem item = snapshot.getValue(NoteListItem.class);
+
+
+                        mAdapter.addItem(item);
+                        mEditText.setText("");
+                        mLayoutManager.scrollToPosition(0);
+                        NoteDAO dao = new NoteDAO(MainActivity.this);
+                        dao.save(item);
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+
+
+                });
+            }
+        });
     }
 
     @Override
@@ -79,4 +127,6 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

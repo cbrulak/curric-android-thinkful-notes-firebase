@@ -7,6 +7,8 @@ public class NoteListItem {
     private String status;
     private Calendar date;
 
+    public NoteListItem() {}
+
     public NoteListItem(String text) {
         this(text, "Open", Calendar.getInstance());
     }

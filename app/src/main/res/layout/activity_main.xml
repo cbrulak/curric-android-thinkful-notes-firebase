@@ -25,6 +25,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_note"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:id="@+id/refresh"
+            android:nestedScrollingEnabled="true" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
