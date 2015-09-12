@@ -1,4 +1,4 @@
-package com.thinkful.notes;
+package com.thinkful.notes.firebase;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.client.Firebase;
+
 public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
     private EditText mEditText;
@@ -22,6 +24,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Firebase.setAndroidContext(this);
+        final Firebase myFirebaseRef = new Firebase("https://blazing-torch-3193.firebaseio.com/");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mEditText = (EditText) findViewById(R.id.edit_text);
@@ -43,6 +48,12 @@ public class MainActivity extends Activity {
                 mAdapter.addItem(item);
                 mEditText.setText("");
                 mLayoutManager.scrollToPosition(0);
+                NoteDAO dao = new NoteDAO(MainActivity.this);
+                dao.save(item);
+
+                Firebase alanRef = myFirebaseRef.child("users").child("noteswithfirebase");
+
+                alanRef.setValue(item);
             }
         });
     }

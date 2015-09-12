@@ -1,4 +1,4 @@
-package com.thinkful.notes;
+package com.thinkful.notes.firebase;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -50,7 +50,7 @@ public class NoteListItemAdapter extends RecyclerView.Adapter<NoteListItemAdapte
     @Override
     public void onBindViewHolder(NoteListItemAdapter.ViewHolder viewHolder, int i) {
         NoteListItem noteListItem = mNoteListItems.get(i);
-        viewHolder.text.setText(noteListItem.text);
+        viewHolder.text.setText(noteListItem.getText());
     }
 
     @Override

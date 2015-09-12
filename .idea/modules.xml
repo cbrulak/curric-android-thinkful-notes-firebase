@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Notes.iml" filepath="$PROJECT_DIR$/Notes.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thinkful-notes.iml" filepath="$PROJECT_DIR$/thinkful-notes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/curric-android-thinkful-notes-firebase.iml" filepath="$PROJECT_DIR$/curric-android-thinkful-notes-firebase.iml" />
     </modules>
   </component>
 </project>
-
