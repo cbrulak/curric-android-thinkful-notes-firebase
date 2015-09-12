@@ -51,9 +51,9 @@ public class MainActivity extends Activity {
                 NoteDAO dao = new NoteDAO(MainActivity.this);
                 dao.save(item);
 
-                Firebase alanRef = myFirebaseRef.child("users").child("noteswithfirebase");
+                Firebase noteRef = myFirebaseRef.child("notes");
 
-                alanRef.setValue(item);
+                noteRef.setValue(item);
             }
         });
     }
