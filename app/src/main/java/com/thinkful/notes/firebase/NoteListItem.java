@@ -7,16 +7,19 @@ public class NoteListItem {
     private String status;
     private Calendar date;
 
+    public String id;
+
     public NoteListItem() {}
 
     public NoteListItem(String text) {
-        this(text, "Open", Calendar.getInstance());
+        this(text, "Open", Calendar.getInstance(),null);
     }
 
-    public NoteListItem(String text, String status, Calendar date){
+    public NoteListItem(String text, String status, Calendar date, String id){
         this.text = text;
         this.status = status;
         this.date = date;
+        this.id = id;
     }
 
     public String getText() {

@@ -21,7 +21,7 @@ public class NoteDAO {
         this.context = context;
     }
 
-    public void save(NoteListItem note) {
+    public long save(NoteListItem note) {
         NotesDBHelper helper = NotesDBHelper.getInstance(context);
         SQLiteDatabase db = helper.getWritableDatabase();
 
@@ -30,7 +30,7 @@ public class NoteDAO {
         values.put(NotesDBContract.Note.COLUMN_NAME_STATUS, note.getStatus());
         values.put(NotesDBContract.Note.COLUMN_NAME_NOTE_DATE, (note.getDate().getTimeInMillis()/1000));
 
-        db.insert(NotesDBContract.Note.TABLE_NAME, null, values);
+        return db.insert(NotesDBContract.Note.TABLE_NAME, null, values);
     }
 
     public List<NoteListItem> list(){
@@ -63,7 +63,10 @@ public class NoteDAO {
             date.setTimeInMillis(c.getLong(c.getColumnIndex(
                     NotesDBContract.Note.COLUMN_NAME_NOTE_DATE)) * 1000);
 
-            notes.add(new NoteListItem(text, status, date));
+
+            String id = NotesDBContract.Note._ID;
+
+            notes.add(new NoteListItem(text, status, date,id));
         }
         return notes;
     }

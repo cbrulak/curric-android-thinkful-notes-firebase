@@ -53,9 +53,9 @@ public class MainActivity extends Activity {
                 mEditText.setText("");
                 mLayoutManager.scrollToPosition(0);
                 NoteDAO dao = new NoteDAO(MainActivity.this);
-                dao.save(item);
+                long id = dao.save(item);
 
-                Firebase noteRef = myFirebaseRef.child("notes");
+                Firebase noteRef = myFirebaseRef.child(String.valueOf(id));
 
                 noteRef.setValue(item);
             }
